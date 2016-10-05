@@ -2,11 +2,21 @@
   @mixin clearfix;
 
   &--gutters{
-    padding: -65px;
+    margin-right: -65px;
   }
 
+
+  &--gutters-large{
+      margin-right: -100px;
+    }
+
+
   &--gutters > div{
-    padding-right: 65px;
+      padding-right: 65px;
+    }
+
+  &--gutters-large > div{
+    padding-right: 100px;
   }
 
   &__b-margin-until-medium{
@@ -26,6 +36,11 @@
 
     &__medium-4--larger{
       width: 37%;
+    }
+
+    &__medium-6{
+      float: right;
+      width: 50%;
     }
 
     &__medium-8{
