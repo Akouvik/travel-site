@@ -15,6 +15,9 @@ class RevealOnScroll{
   }
 
   createWaypoints(){
+    // that point to the instance of our class allowing
+    // that.offsetPercentage to be this.offsetPercentagewhich is the offset
+    // value inserted as a parameter when the revealOnScroll class is called.
     var that = this;
     this.itemsToReveal.each(function(){
       var currentItem = this;
