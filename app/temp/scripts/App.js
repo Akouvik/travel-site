@@ -50,9 +50,9 @@
 
 	var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
 
-	var _revealOnScroll = __webpack_require__(3);
+	var _RevealOnScroll = __webpack_require__(3);
 
-	var _revealOnScroll2 = _interopRequireDefault(_revealOnScroll);
+	var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
 
 	var _jquery = __webpack_require__(2);
 
@@ -62,23 +62,23 @@
 
 	var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
 
-	var _modal = __webpack_require__(7);
+	var _Modal = __webpack_require__(7);
 
-	var _modal2 = _interopRequireDefault(_modal);
+	var _Modal2 = _interopRequireDefault(_Modal);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mobileMenu = new _MobileMenu2.default();
-	new _revealOnScroll2.default((0, _jquery2.default)('.feature-item'), "85%");
-	new _revealOnScroll2.default((0, _jquery2.default)('.testimonials'), "60%");
+	new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
+	new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
 	var stickyHeader = new _StickyHeader2.default();
-	var modal = new _modal2.default();
+	var modal = new _Modal2.default();
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -98,23 +98,23 @@
 	  function MobileMenu() {
 	    _classCallCheck(this, MobileMenu);
 
-	    this.siteHeader = (0, _jquery2.default)('.site-header');
-	    this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
-	    this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
+	    this.siteHeader = (0, _jquery2.default)(".site-header");
+	    this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon");
+	    this.menuContent = (0, _jquery2.default)(".site-header__menu-content");
 	    this.events();
 	  }
 
 	  _createClass(MobileMenu, [{
-	    key: 'events',
+	    key: "events",
 	    value: function events() {
 	      this.menuIcon.click(this.toggleTheMenu.bind(this));
 	    }
 	  }, {
-	    key: 'toggleTheMenu',
+	    key: "toggleTheMenu",
 	    value: function toggleTheMenu() {
-	      this.menuContent.toggleClass('site-header__menu-content--is-visible');
-	      this.siteHeader.toggleClass('site-header--is-expanded');
-	      this.menuIcon.toggleClass('site-header__menu-icon--close-x');
+	      this.menuContent.toggleClass("site-header__menu-content--is-visible");
+	      this.siteHeader.toggleClass("site-header--is-expanded");
+	      this.menuIcon.toggleClass("site-header__menu-icon--close-x");
 	    }
 	  }]);
 
@@ -10374,13 +10374,12 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var RevealOnScroll = function () {
-	  // constructor code runs as soon as the page loads.
-	  function RevealOnScroll(elements, offset) {
+	  function RevealOnScroll(els, offset) {
 	    _classCallCheck(this, RevealOnScroll);
 
-	    this.itemsToReveal = elements;
-	    this.hideInitially();
+	    this.itemsToReveal = els;
 	    this.offsetPercentage = offset;
+	    this.hideInitially();
 	    this.createWaypoints();
 	  }
 
@@ -10392,16 +10391,13 @@
 	  }, {
 	    key: 'createWaypoints',
 	    value: function createWaypoints() {
-	      // that point to the instance of our class allowing
-	      // that.offsetPercentage to be this.offsetPercentagewhich is the offset
-	      // value inserted as a parameter when the revealOnScroll class is called.
 	      var that = this;
 	      this.itemsToReveal.each(function () {
 	        var currentItem = this;
 	        new Waypoint({
 	          element: currentItem,
 	          handler: function handler() {
-	            (0, _jquery2.default)(currentItem).addClass('reveal-item--is-visible');
+	            (0, _jquery2.default)(currentItem).addClass("reveal-item--is-visible");
 	          },
 	          offset: that.offsetPercentage
 	        });
@@ -11209,12 +11205,12 @@
 	  function StickyHeader() {
 	    _classCallCheck(this, StickyHeader);
 
-	    this.lazyImages = (0, _jquery2.default)('.lazyload');
-	    this.siteHeader = (0, _jquery2.default)('.site-header');
-	    this.headerTriggerElement = (0, _jquery2.default)('.large-hero__title');
+	    this.lazyImages = (0, _jquery2.default)(".lazyload");
+	    this.siteHeader = (0, _jquery2.default)(".site-header");
+	    this.headerTriggerElement = (0, _jquery2.default)(".large-hero__title");
 	    this.createHeaderWaypoint();
-	    this.pageSections = (0, _jquery2.default)('.page-section');
-	    this.headerLinks = (0, _jquery2.default)('.primary-nav a');
+	    this.pageSections = (0, _jquery2.default)(".page-section");
+	    this.headerLinks = (0, _jquery2.default)(".primary-nav a");
 	    this.createPageSectionWaypoints();
 	    this.addSmoothScrolling();
 	    this.refreshWaypoints();
@@ -11223,8 +11219,8 @@
 	  _createClass(StickyHeader, [{
 	    key: 'refreshWaypoints',
 	    value: function refreshWaypoints() {
-	      this.lazyImages.load(function () {
-	        Waypoint.refresh();
+	      this.lazyImages.on("load", function () {
+	        Waypoint.refreshAll();
 	      });
 	    }
 	  }, {
@@ -11240,9 +11236,9 @@
 	        element: this.headerTriggerElement[0],
 	        handler: function handler(direction) {
 	          if (direction == "down") {
-	            that.siteHeader.addClass('site-header--dark');
+	            that.siteHeader.addClass("site-header--dark");
 	          } else {
-	            that.siteHeader.removeClass('site-header--dark');
+	            that.siteHeader.removeClass("site-header--dark");
 	          }
 	        }
 	      });
@@ -11257,9 +11253,9 @@
 	          element: currentPageSection,
 	          handler: function handler(direction) {
 	            if (direction == "down") {
-	              var matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
-	              that.headerLinks.removeClass('is-current-link');
-	              (0, _jquery2.default)(matchingHeaderLink).addClass('is-current-link');
+	              var matchingHeaderLink = currentPageSection.getAttribute("data-matching-link");
+	              that.headerLinks.removeClass("is-current-link");
+	              (0, _jquery2.default)(matchingHeaderLink).addClass("is-current-link");
 	            }
 	          },
 	          offset: "18%"
@@ -11269,9 +11265,9 @@
 	          element: currentPageSection,
 	          handler: function handler(direction) {
 	            if (direction == "up") {
-	              var matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
-	              that.headerLinks.removeClass('is-current-link');
-	              (0, _jquery2.default)(matchingHeaderLink).addClass('is-current-link');
+	              var matchingHeaderLink = currentPageSection.getAttribute("data-matching-link");
+	              that.headerLinks.removeClass("is-current-link");
+	              (0, _jquery2.default)(matchingHeaderLink).addClass("is-current-link");
 	            }
 	          },
 	          offset: "-40%"
@@ -11614,7 +11610,7 @@
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -11634,39 +11630,41 @@
 	  function Modal() {
 	    _classCallCheck(this, Modal);
 
-	    this.openModalButton = (0, _jquery2.default)('.open-modal');
-	    this.modal = (0, _jquery2.default)('.modal');
-	    this.closeModalButton = (0, _jquery2.default)('.modal__close');
+	    this.openModalButton = (0, _jquery2.default)(".open-modal");
+	    this.modal = (0, _jquery2.default)(".modal");
+	    this.closeModalButton = (0, _jquery2.default)(".modal__close");
 	    this.events();
 	  }
 
 	  _createClass(Modal, [{
-	    key: 'events',
+	    key: "events",
 	    value: function events() {
-	      // clicking the open modal btn
+	      // clicking the open modal button
 	      this.openModalButton.click(this.openModal.bind(this));
-	      // clicking the X close modal btn
+
+	      // clicking the x close modal button
 	      this.closeModalButton.click(this.closeModal.bind(this));
-	      // pushes any btn on the keyboard
+
+	      // pushes any key
 	      (0, _jquery2.default)(document).keyup(this.keyPressHandler.bind(this));
 	    }
 	  }, {
-	    key: 'keyPressHandler',
+	    key: "keyPressHandler",
 	    value: function keyPressHandler(e) {
 	      if (e.keyCode == 27) {
 	        this.closeModal();
 	      }
 	    }
 	  }, {
-	    key: 'openModal',
+	    key: "openModal",
 	    value: function openModal() {
-	      this.modal.addClass('modal--is-visible');
+	      this.modal.addClass("modal--is-visible");
 	      return false;
 	    }
 	  }, {
-	    key: 'closeModal',
+	    key: "closeModal",
 	    value: function closeModal() {
-	      this.modal.removeClass('modal--is-visible');
+	      this.modal.removeClass("modal--is-visible");
 	    }
 	  }]);
 

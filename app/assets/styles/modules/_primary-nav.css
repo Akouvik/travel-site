@@ -1,44 +1,42 @@
-.primary-nav{
+.primary-nav {
   padding-top: 10px;
 
-  @mixin atMedium{
+  @mixin atMedium {
     padding-top: 0;
   }
 
-  &--pull-right{
-    @mixin atMedium{
+  &--pull-right {
+    @mixin atMedium {
       float: right;
     }
   }
 
-  ul{
+  ul {
     margin: 0;
     padding: 0;
     @mixin clearfix;
   }
 
-  li{
+  li {
     list-style: none;
-    padding-right: 7px;
     display: inline-block;
-
-    @mixin atMedium{
+    padding-right: 7px;
+    @mixin atMedium {
       padding-right: 20px;
       float: left;
       display: block;
     }
   }
 
-  li:last-child{
+  li:last-child {
     padding-right: 0;
-
-    @mixin atMedium{
+    @mixin atMedium {
       padding-right: 20px;
     }
   }
 
-  a{
-    color: #fff;
+  a {
+    color: #FFF;
     font-weight: 300;
     text-decoration: none;
     display: block;
@@ -46,12 +44,12 @@
     font-size: .8rem;
     background-color: rgba($mainBlue, .5);
 
-    @mixin atMedium{
+    @mixin atMedium {
       font-size: 1rem;
       padding: 12px 0;
       background-color: transparent;
 
-      &.is-current-link{
+      &.is-current-link {
         color: #fabb69;
       }
     }
